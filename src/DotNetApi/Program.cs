@@ -1,5 +1,7 @@
 using DotNetApi.Services;
 using DotNetBasics.DesignPatterns.Creational;
+using DotNetBasics.DesignPatterns.Creational.Factory.Cloud;
+using DotNetBasics.DesignPatterns.Creational.Factory.Payment;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IDataService, DataService>();
 builder.Services.AddSingleton<INotificationFactory, NotificationFactory>();
+builder.Services.AddSingleton<IPaymentProcessorFactory, PaymentProcessorFactory>();
+builder.Services.AddSingleton<ICloudProviderFactory, CloudProviderFactory>();
 builder.Services.AddSingleton<DotNetBasics.DesignPatterns.Creational.ILogger>(Logger.Instance);
 
 var app = builder.Build();

@@ -41,4 +41,32 @@ public class HomeController : ControllerBase
         var result = _dataService.SendSms(payload);
         return Ok(new { result });
     }
+
+    [HttpGet("payment/{paymentType}")]
+    public IActionResult ProcessPayment(string paymentType, [FromQuery] decimal amount)
+    {
+        var result = _dataService.ProcessPayment(paymentType, amount);
+        return Ok(new { result });
+    }
+
+    [HttpGet("cloud/{providerName}")]
+    public IActionResult DeployToCloud(string providerName, [FromQuery] string applicationName)
+    {
+        var result = _dataService.DeployToCloud(providerName, applicationName);
+        return Ok(new { result });
+    }
+
+    [HttpGet("payment/abstract/{factoryType}")]
+    public IActionResult ProcessPaymentWithAbstractFactory(string factoryType, [FromQuery] decimal amount)
+    {
+        var result = _dataService.ProcessPaymentWithAbstractFactory(factoryType, amount);
+        return Ok(new { result });
+    }
+
+    [HttpGet("cloud/abstract/{providerName}")]
+    public IActionResult DeployToCloudWithAbstractFactory(string providerName, [FromQuery] string applicationName)
+    {
+        var result = _dataService.DeployToCloudWithAbstractFactory(providerName, applicationName);
+        return Ok(new { result });
+    }
 }
